@@ -1,6 +1,6 @@
 # AlphaFader
 
-AlphaFader is Aegisub script that add a **fade effect** to selected lines using \alpha tag. Primarily used for Frame by Frame lines.
+AlphaFader is an Aegisub script that add a **fade effect** to selected lines using \alpha tag. Primarily used for Frame by Frame lines.
 
 Right now it has 3 options.
 
