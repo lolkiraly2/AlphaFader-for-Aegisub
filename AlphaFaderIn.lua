@@ -15,14 +15,12 @@ script_version="1.0"
             alpha = alpha - step
             local numhex = string.upper(string.format("%x", alpha))
 
-            msg = "si: " .. si .. " li: " .. li .."\n"
-            aegisub.debug.out(msg)
             --Read in the line
             local line=sub[li]
             
             fc = string.sub(line.text, 1, 1)
-            if not fc  == '{' then
-                line.text="{\\alpha&H".. numhex .. "}".. line.text .. "{" .. alpha .."}"
+            if fc  ~= '{' then
+                line.text="{\\alpha&H".. numhex .. "}".. line.text
 
                 else
                 line.text = insert(line.text,numhex)  

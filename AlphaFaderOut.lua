@@ -4,7 +4,7 @@ script_author="Lolkiraly2"
 script_version="1.0"
 
 --Main processing function
-    function fadein(sub, sel)
+    function fadeout(sub, sel)
         local alpha = 0
         local step = math.floor(255/#sel)
         --Go through all the lines in the selection
@@ -19,8 +19,8 @@ script_version="1.0"
             local line=sub[li]
             
             fc = string.sub(line.text, 1, 1)
-            if not fc  == '{' then
-                line.text="{\\alpha&H".. numhex .. "}"..line.text .. "{" .. alpha .."}"
+            if fc  ~= '{' then
+                line.text="{\\alpha&H".. numhex .. "}"..line.text
 
                 else
                 line.text = insert(line.text,numhex)  
@@ -48,4 +48,4 @@ script_version="1.0"
     
         return "{" .. newTags .. "}" .. text
     end
-    aegisub.register_macro(script_name,script_description,fadein)
+    aegisub.register_macro(script_name,script_description,fadeout)
