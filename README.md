@@ -2,7 +2,7 @@
 
 AlphaFader is an Aegisub script that add a **fade effect** to selected lines using \alpha tag. Primarily used for Frame by Frame lines.
 
-Right now the GUI has 3 options. (The FaderIn.lua and the FaderOut.lua can be download and use without gui) 
+Right now the GUI has 4 options. (The FaderIn.lua and the FaderOut.lua can be download and use without gui) 
 
 ## How to use
 
@@ -18,7 +18,7 @@ It's create a fade in effect based on how many line was selected.
 Same as Fade in but it makes a fade out effect
 
 ### Gradient fade in
-Gradient fade in is useful, if you have a Gradient sign that move by a mocha tracking data and you need to add this a fade in effect.
+Gradient fade in is useful, if you have a Gradient sign that move by a mocha tracking data and you need to add this a fade in effect.<br/> (Or for add the same fade effect for multiply moving signs)
 
 1. Add gradient to a text using [Gradient Everthing](https://github.com/TypesettingTools/lyger-Aegisub-Scripts/blob/master/macros/lyger.GradientEverything.moon) or a similar script.
 2. Apply the tracking data to the gradient sign's lines.
@@ -26,5 +26,7 @@ Gradient fade in is useful, if you have a Gradient sign that move by a mocha tra
 4. Set the frame duration. (Can't be bigger than the tracking data framecount)
 5. Run the script.
 
+Frame duration: the time beetween your sign's first line and where it fully visible in frames.
+
 ### Gradient fade out
-Will be implemented later.
+Same as Gradient fade in but it makes a fade out effect for FBF gradient signs 

@@ -110,6 +110,59 @@ function FadeGradIn(sub, sel, fr)
     return sel
 end
 
+function FadeGradOut(sub, sel, fr)
+
+    -- copy line to a temp array
+    local lines = {}
+
+    for si, li in ipairs(sel) do
+        lines[si] = sub[li]
+    end
+
+    local i = #lines
+
+    -- Modify line
+    while i >= 0 do
+
+        local alpha = 255
+        local frame = fr
+        local stp = math.floor(255 / frame)
+        local steps = 0
+
+        -- If the i reach the lines lenght than break
+        if i - steps == 0 then
+            break
+        end
+
+        -- Modify alpha based on how many frame need to the fade
+        while steps < frame do
+            alpha = alpha - stp
+            local numhex = string.upper(string.format("%x", alpha))
+            lines[i - steps].text = insert(lines[i - steps].text, numhex)
+            steps = steps + 1
+        end
+
+        -- Find the next section index
+        while lines[i].start_time ~= lines[i - steps].start_time do
+            steps = steps + 1
+           
+            -- If the i reach 0 than break
+            if i - steps == 0 then
+                break
+            end
+        end
+        i = i - steps
+    end
+
+    for si, li in ipairs(sel) do
+        sub[li] = lines[si]
+    end
+
+    -- Set undo point and maintain selection
+    aegisub.set_undo_point(script_name)
+    return sel
+end
+
 function insert(l,a)
     local len = string.len(l)
     local alphatag = "\\alpha&H" .. a .. "&"
@@ -127,7 +180,7 @@ dialog_config=
     {
         class="label",
         x=0,y=0,width=1,height=1,
-        label="(Only for Gradient fade) Frames duration:"
+        label="(Only for Gradient fade in/out) Frames duration:"
     },
     {
         class="intedit",name="fr",
@@ -161,8 +214,7 @@ function AlphaFader(sub, sel)
         end
 
         if pressed == "Gradient fade out" then
-            --implement later
-            aegisub.cancel()
+            FadeGradOut(sub, sel,results["fr"])
         end
 
         aegisub.set_undo_point(script_name)
